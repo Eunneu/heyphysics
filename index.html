@@ -4,65 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HeyPhysics - Escape Room</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #111827; /* Dark Gray */
-            color: #F3F4F6; /* Light Gray */
-            overflow: hidden;
-        }
-        .screen {
-            display: none;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        .screen.active {
-            display: flex;
-        }
-        .modal {
-            display: none;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-        .modal.active {
-            display: flex;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.98); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .avatar-option {
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .avatar-option:hover {
-            transform: scale(1.05);
-        }
-        .avatar-option.selected {
-            box-shadow: 0 0 0 4px #3B82F6; /* Blue-500 */
-            transform: scale(1.05);
-        }
-        .game-object {
-            position: absolute;
-            cursor: pointer;
-            border: 2px dashed rgba(255, 255, 255, 0);
-            transition: border-color 0.3s;
-            border-radius: 8px;
-        }
-        .game-object:hover {
-            border-color: rgba(59, 130, 246, 0.7);
-        }
-    </style>
+    <script src="script/script1.js"></script>
+    <script src="script/script.js"></script>
+    <script>
+        // 페이지 로드가 완료되면 실행
+        window.onload = function() {
+            // id로 input 요소를 찾아서 값을 빈 문자열로 설정
+        document.getElementById('player-name-input').value = '';
+        };
+    </script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="flex items-center justify-center min-h-screen">
 
     <!-- Container for all screens -->
-    <div id="app-container" class="w-full max-w-4xl h-[700px] bg-gray-900 rounded-lg shadow-2xl p-6 relative">
+    <div id="app-container" class="w-full max-w-4xl h-[700px] bg-gray-900 rounded-lg shadow-2xl p-6 relative" style="background-image: url('images/background_img.jpg')">
 
         <!-- Screen 1: Login -->
-        <div id="login-screen" class="screen active flex-col items-center justify-center h-full">
-            <h1 class="text-6xl font-bold text-blue-400 mb-4">HeyPhysics</h1>
+        <div id="login-screen" class="screen active flex-col items-center justify-center h-full">            
+            <img src="images/title_img1-removebg-preview.png">
             <p class="text-gray-400 mb-8">Enter your name to begin your revision adventure.</p>
-            <input id="player-name-input" type="text" placeholder="Enter your name" class="w-1/2 p-3 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-center text-lg">
+            <input id="player-name-input" type="text" value=" " placeholder="Enter your name"  class="w-1/2 p-3 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-center text-lg" autocomplete="off">
             <button id="login-button" class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105">
                 Start Game
             </button>
@@ -73,17 +35,41 @@
             <h2 class="text-4xl font-bold mb-2">Create Your Avatar</h2>
             <p class="text-gray-400 mb-8">Choose a character to represent you.</p>
             <div class="flex space-x-8">
-                <div class="avatar-option p-4 bg-gray-800 rounded-lg cursor-pointer" data-avatar="avatar1">
-                    <img src="https://placehold.co/150x150/3B82F6/FFFFFF?text=Boy" alt="Avatar 1" class="rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/150x150/3B82F6/FFFFFF?text=Boy';">
-                    <p class="text-center mt-2 font-semibold">Alex</p>
+                <div class="avatar-option p-4 bg-gray-800 rounded-lg cursor-pointer" data-avatar="avatar1" data-src="images/avatar1.png">                    
+                    <img src="images/avatar1.png" width="120" alt="Avatar 1" class="rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/150x150/3B82F6/FFFFFF?text=Boy';">
+                    <p class="text-center mt-2 font-semibold">Ennui</p>
                 </div>
-                <div class="avatar-option p-4 bg-gray-800 rounded-lg cursor-pointer" data-avatar="avatar2">
-                    <img src="https://placehold.co/150x150/EC4899/FFFFFF?text=Girl" alt="Avatar 2" class="rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/150x150/EC4899/FFFFFF?text=Girl';">
-                    <p class="text-center mt-2 font-semibold">Bella</p>
+                <div class="avatar-option p-4 bg-gray-800 rounded-lg cursor-pointer" data-avatar="avatar2" data-src="images/avatar2.png">
+                    <img src="images/avatar2.png" width="120" alt="Avatar 2" class="rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/150x150/EC4899/FFFFFF?text=Girl';">
+                    <p class="text-center mt-2 font-semibold">Sadness</p>
                 </div>
-                <div class="avatar-option p-4 bg-gray-800 rounded-lg cursor-pointer" data-avatar="avatar3">
-                    <img src="https://placehold.co/150x150/F97316/FFFFFF?text=Pet" alt="Avatar 3" class="rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/150x150/F97316/FFFFFF?text=Pet';">
-                    <p class="text-center mt-2 font-semibold">Cosmo</p>
+                <div class="avatar-option p-4 bg-gray-800 rounded-lg cursor-pointer" data-avatar="avatar3" data-src="images/avatar3.png">                    
+                    <img src="images/avatar3.png" width="120" alt="Avatar 3" class="rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/150x150/F97316/FFFFFF?text=Pet';">
+                    <p class="text-center mt-2 font-semibold">Anxiety</p>
+                </div>
+                <div class="avatar-option p-4 bg-gray-800 rounded-lg cursor-pointer" data-avatar="avatar4" data-src="images/avatar4.png">
+                    <img src="images/avatar4.png" width="120" alt="Avatar 4" class="rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/150x150/F97316/FFFFFF?text=Pet';">
+                    <p class="text-center mt-2 font-semibold">Fear</p>
+                </div>
+            </div>
+            <hr>
+            <div class="flex space-x-8">
+                <div class="avatar-option p-4 bg-gray-800 rounded-lg cursor-pointer" data-avatar="avatar5" data-src="images/avatar5.png">                   
+                    <img src="images/avatar5.png" width="120" alt="Avatar 5" class="rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/150x150/F97316/FFFFFF?text=Pet';">
+                    <p class="text-center mt-2 font-semibold">Embarrassment</p>
+                </div>
+                <div class="avatar-option p-4 bg-gray-800 rounded-lg cursor-pointer" data-avatar="avatar6" data-src="images/avatar6.png">
+                   
+                    <img src="images/avatar6.png" width="120" alt="Avatar 6" class="rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/150x150/F97316/FFFFFF?text=Pet';">
+                    <p class="text-center mt-2 font-semibold">Anger</p>
+                </div>
+                <div class="avatar-option p-4 bg-gray-800 rounded-lg cursor-pointer" data-avatar="avatar7" data-src="images/avatar7.png">                  
+                    <img src="images/avatar7.png" width="120" alt="Avatar 7" class="rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/150x150/F97316/FFFFFF?text=Pet';">
+                    <p class="text-center mt-2 font-semibold">Disgust</p>
+                </div>
+                <div class="avatar-option p-4 bg-gray-800 rounded-lg cursor-pointer" data-avatar="avatar8" data-src="images/avatar8.png">                    
+                    <img src="images/avatar8.png" width="120" alt="Avatar 8" class="rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/150x150/F97316/FFFFFF?text=Pet';">
+                    <p class="text-center mt-2 font-semibold">Joy</p>
                 </div>
             </div>
             <button id="avatar-confirm-button" class="mt-10 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105" disabled>
@@ -133,24 +119,30 @@
 
         <!-- Screen 6: Game Room -->
         <div id="game-room-screen" class="screen flex-col items-center justify-center h-full w-full">
-             <div class="w-full h-full bg-cover bg-center rounded-md relative" style="background-image: url('https://placehold.co/800x600/2D3748/E2E8F0?text=Physics+Lab+Room');">
+             <div class="w-full h-full bg-cover bg-center rounded-md relative" style="background-image: url('https://placehold.co/800x600/2D3748/E2E8F0?text=Physics+Game+Room');">
                 <!-- Header for game info -->
                 <div class="absolute top-0 left-0 right-0 p-4 bg-black bg-opacity-40 rounded-t-md flex justify-between items-center">
-                    <div>
-                        <p id="game-player-name" class="font-bold text-lg">Player</p>
-                        <p id="game-topic-info" class="text-sm text-gray-300">Topic > Sub-Topic</p>
+                    <div  class="flex items-center space-x-3">
+                        <img id="game-avatar-img" src="images/" alt="Player Avatar" width="80px" height="80px" class="rounded-full border-2 border-blue-400">
+                        <div>
+                            <p id="game-player-name" class="font-bold text-lg">Player</p>
+                            <p id="game-topic-info" class="text-sm text-gray-300">Topic > Sub-Topic</p>                       
+                        </div>
                     </div>
                     <div id="game-level-info" class="px-3 py-1 rounded-full text-white font-semibold">Level</div>
                 </div>
                 
                 <!-- This is an invisible div placed over the desk in the background image to make it clickable. -->
-                <div id="clickable-desk" class="game-object" style="top: 45%; left: 30%; width: 40%; height: 35%;"></div>
+                <div id="clickable-desk" class="game-object" style="top: 55%; left: 35%; width: 30%; height: 30%;">
+                    <img src="images/cozy-books-coffee-mug-illustration.png" class="center-image">
+                </div>
                 
                  <!-- A small area at the bottom to display messages to the player. -->
                 <div id="game-message" class="absolute bottom-4 left-4 right-4 p-3 bg-gray-900 bg-opacity-80 rounded-md text-center">
                     Welcome! Click on an object to find a puzzle.
                 </div>
             </div>
+            <button class="back-button mt-8 bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg" data-target="levels-screen">Back to Level Select</button>
         </div>
 
     </div>
@@ -180,327 +172,6 @@
     </div>
 
 
-    <script>
-        // =================================================================================
-        // --- JAVASCRIPT LOGIC FOR HEYPHYSICS ---
-        // This section contains all the client-side logic to make the game interactive.
-        // =================================================================================
-
-        // --- I. GLOBAL STATE AND DATA ---
-
-        // The 'gameState' object is a central place to store all information about the
-        // player's current session. This includes their name and choices.
-        // Using a single object for state management is an efficient technique for organizing data.
-        const gameState = {
-            playerName: '',
-            avatar: '',
-            topic: '',
-            subTopic: '',
-            level: '',
-        };
-
-        // The 'gameData' object acts as a temporary, front-end database.
-        // It holds all the syllabus topics and the specific questions for each sub-topic.
-        // In the final version, this data will be fetched from the Python back-end and SQLite database.
-        const gameData = {
-            'A. Mechanics': {
-                'A.1 Kinematics': {
-                    question: 'A car accelerates from rest to 20 m/s in 5 seconds. What is its acceleration?',
-                    options: ['2 m/s²', '4 m/s²', '5 m/s²', '10 m/s²'],
-                    answer: '4 m/s²',
-                    hint: 'Acceleration is the change in velocity divided by the time taken (a = Δv / t).'
-                },
-                'A.2 Forces': { 
-                    question: 'What is the net force on a box being pushed with 10N to the right and 4N to the left?',
-                    options: ['14N left', '6N left', '6N right', '14N right'],
-                    answer: '6N right',
-                    hint: 'Net force is the vector sum of all forces. Consider the directions.'
-                },
-            },
-            'B. Thermal Physics': {
-                'B.1 Temperature': { 
-                    question: 'Convert 25° Celsius to Kelvin.',
-                    options: ['298K', '248K', '-248K', '25K'],
-                    answer: '298K',
-                    hint: 'The formula is K = C + 273.15. We can approximate to K = C + 273.'
-                },
-            },
-            'C. Waves': {
-                'C.1 Wave Properties': { /* Future questions can be added here */ },
-            },
-            'D. Electricity & Magnetism': {
-                'D.1 Circuits': { /* Future questions can be added here */ },
-            }
-        };
-
-
-        // --- II. CORE APPLICATION FUNCTIONS ---
-
-        /**
-         * Manages the visibility of screens in this single-page application.
-         * It works by hiding all screens and then making only the target screen visible.
-         * This technique avoids page reloads and creates a smooth, app-like experience.
-         * @param {string} screenId - The ID of the HTML element for the screen to show.
-         */
-        function showScreen(screenId) {
-            document.querySelectorAll('.screen').forEach(screen => {
-                screen.classList.remove('active');
-            });
-            document.getElementById(screenId).classList.add('active');
-        }
-        
-        /**
-         * Manages the visibility of modal pop-ups.
-         * @param {string} modalId - The ID of the modal element to show.
-         */
-        function showModal(modalId) {
-            document.querySelectorAll('.modal').forEach(modal => modal.classList.remove('active'));
-            document.getElementById(modalId).classList.add('active');
-        }
-
-        /**
-         * Hides all active modal pop-ups.
-         */
-        function hideModals() {
-            document.querySelectorAll('.modal').forEach(modal => modal.classList.remove('active'));
-        }
-
-        /**
-         * This is the main entry point of the application. It's called once the HTML
-         * document has fully loaded. Its purpose is to set up the initial state
-         * and attach all the necessary event listeners to make the page interactive.
-         */
-        function initializeApp() {
-            // localStorage is used to remember the player's name between sessions.
-            // This provides a better user experience for returning players.
-            const savedName = localStorage.getItem('playerName');
-            if (savedName) {
-                gameState.playerName = savedName;
-                document.getElementById('player-name-input').value = savedName;
-            }
-            populateTopics();
-            setupEventListeners();
-        }
-
-        /**
-         * This function is crucial for interactivity. It finds all the clickable elements
-         * (buttons, divs, etc.) and attaches a function to be executed when a user
-         * clicks on them. This is known as event handling.
-         */
-        function setupEventListeners() {
-            // Event listener for the main login button.
-            document.getElementById('login-button').addEventListener('click', () => {
-                const nameInput = document.getElementById('player-name-input');
-                // Basic validation: ensure the user has entered a name.
-                if (nameInput.value.trim() !== '') {
-                    gameState.playerName = nameInput.value.trim();
-                    localStorage.setItem('playerName', gameState.playerName);
-                    showScreen('avatar-screen');
-                }
-            });
-
-            // Event listeners for each avatar choice.
-            document.querySelectorAll('.avatar-option').forEach(option => {
-                option.addEventListener('click', (e) => {
-                    // First, remove the 'selected' style from any other option.
-                    document.querySelectorAll('.avatar-option').forEach(o => o.classList.remove('selected'));
-                    // Then, apply the 'selected' style to the one that was just clicked.
-                    const selectedAvatarElement = e.currentTarget;
-                    selectedAvatarElement.classList.add('selected');
-                    gameState.avatar = selectedAvatarElement.dataset.avatar; // Store the choice.
-                    // Enable the confirm button only after a choice is made.
-                    document.getElementById('avatar-confirm-button').disabled = false;
-                });
-            });
-            
-            // Event listener for the avatar confirmation button.
-            document.getElementById('avatar-confirm-button').addEventListener('click', () => {
-                if (gameState.avatar) { // Proceed only if an avatar has been chosen.
-                    showScreen('topics-screen');
-                }
-            });
-
-            // Event listener for the sub-topic selection buttons.
-            // This uses event delegation: one listener on the parent container
-            // efficiently handles clicks on any button inside it.
-            document.getElementById('subtopic-list').addEventListener('click', (e) => {
-                if (e.target.matches('.subtopic-button')) {
-                    gameState.subTopic = e.target.dataset.subtopic;
-                    showScreen('levels-screen');
-                }
-            });
-
-            // Event listeners for the level (difficulty) selection buttons.
-            document.querySelectorAll('.level-button').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    gameState.level = e.currentTarget.dataset.level;
-                    startGame(); // This is the trigger to enter the actual game room.
-                });
-            });
-
-            // A single set of listeners for all 'back' buttons for efficiency.
-            document.querySelectorAll('.back-button').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    showScreen(e.currentTarget.dataset.target);
-                });
-            });
-            
-            // Event listener for the clickable object within the game room.
-            document.getElementById('clickable-desk').addEventListener('click', () => {
-                displayQuestion();
-            });
-            
-            // Event listeners for the buttons inside the question modal.
-            document.getElementById('hint-button').addEventListener('click', () => {
-                document.getElementById('hint-box').classList.remove('hidden');
-            });
-            
-            document.getElementById('close-modal-button').addEventListener('click', () => {
-                hideModals();
-            });
-        }
-
-
-        // --- III. DYNAMIC CONTENT GENERATION ---
-
-        /**
-         * Dynamically creates the topic buttons on the topic selection screen.
-         * This function reads the keys from the 'gameData' object and creates an HTML
-         * button for each one. This is a flexible design; adding a new topic to
-         * 'gameData' will automatically add a new button on the screen.
-         */
-        function populateTopics() {
-            const topicList = document.getElementById('topic-list');
-            topicList.innerHTML = ''; // Clear any old content first.
-            for (const topic in gameData) {
-                const button = document.createElement('button');
-                button.className = "p-6 bg-gray-800 hover:bg-blue-600 rounded-lg text-xl font-semibold transition-colors";
-                button.textContent = topic;
-                // Assign an onclick event to each button to handle topic selection.
-                button.onclick = () => selectTopic(topic);
-                topicList.appendChild(button);
-            }
-        }
-
-        /**
-         * Handles the logic when a user clicks a topic button.
-         * @param {string} topic - The name of the topic that was selected.
-         */
-        function selectTopic(topic) {
-            gameState.topic = topic;
-            populateSubTopics(topic); // Prepare the next screen.
-            showScreen('subtopics-screen'); // Show the next screen.
-        }
-
-        /**
-         * Similar to populateTopics, this function dynamically creates the sub-topic buttons
-         * based on the topic the user previously selected.
-         * @param {string} topic - The parent topic selected by the user.
-         */
-        function populateSubTopics(topic) {
-            const subtopicList = document.getElementById('subtopic-list');
-            const subtopicTitle = document.getElementById('subtopic-title');
-            subtopicTitle.textContent = `Sub-Topics for ${topic}`;
-            subtopicList.innerHTML = '';
-            const subtopics = gameData[topic];
-            for (const subtopic in subtopics) {
-                 // Check if the sub-topic actually has a question before creating a button.
-                if (subtopics[subtopic].question) {
-                    const button = document.createElement('button');
-                    button.className = "subtopic-button p-4 bg-gray-800 hover:bg-blue-600 rounded-lg font-semibold transition-colors";
-                    button.textContent = subtopic;
-                    button.dataset.subtopic = subtopic; // Use data-* attribute to store the value.
-                    subtopicList.appendChild(button);
-                }
-            }
-        }
-
-
-        // --- IV. CORE GAMEPLAY LOGIC ---
-
-        /**
-         * This function is called when a difficulty level is selected. It prepares the
-         * game room by populating it with the player's and topic's information,
-         * then displays the game screen.
-         */
-        function startGame() {
-            // Personalize the game room UI with the stored gameState.
-            document.getElementById('game-player-name').textContent = `Player: ${gameState.playerName}`;
-            document.getElementById('game-topic-info').textContent = `${gameState.topic} > ${gameState.subTopic}`;
-            const levelInfo = document.getElementById('game-level-info');
-            levelInfo.textContent = gameState.level;
-            
-            // Apply conditional styling to the level badge based on difficulty.
-            levelInfo.className = 'px-3 py-1 rounded-full text-white font-semibold'; // Reset classes first.
-            if (gameState.level === 'Easy') levelInfo.classList.add('bg-green-600');
-            if (gameState.level === 'Medium') levelInfo.classList.add('bg-yellow-500');
-            if (gameState.level === 'Hard') levelInfo.classList.add('bg-red-600');
-
-            showScreen('game-room-screen');
-        }
-        
-        /**
-         * Fetches the relevant question data based on the user's choices,
-         * then populates and displays the question modal.
-         */
-        function displayQuestion() {
-            const questionData = gameData[gameState.topic][gameState.subTopic];
-            
-            // Reset the modal to its default state before showing it.
-            document.getElementById('hint-box').classList.add('hidden');
-            document.getElementById('feedback-box').classList.add('hidden');
-            document.getElementById('close-modal-button').classList.add('hidden');
-            document.getElementById('hint-button').classList.remove('hidden');
-
-            // Populate the modal with the question, hint, and options.
-            document.getElementById('question-level').textContent = `${gameState.subTopic} ${gameState.level}`;
-            document.getElementById('question-text').textContent = questionData.question;
-            document.getElementById('hint-text').textContent = questionData.hint;
-            
-            const optionsContainer = document.getElementById('question-options');
-            optionsContainer.innerHTML = ''; // Clear previous options.
-            questionData.options.forEach(optionText => {
-                const button = document.createElement('button');
-                button.className = "p-3 bg-gray-700 hover:bg-blue-600 rounded-lg font-medium transition-colors";
-                button.textContent = optionText;
-                button.onclick = () => checkAnswer(optionText, questionData.answer);
-                optionsContainer.appendChild(button);
-            });
-
-            showModal('question-modal');
-        }
-        
-        /**
-         * Checks if the player's selected answer is correct and provides immediate visual feedback.
-         * @param {string} selectedOption - The answer the user clicked on.
-         * @param {string} correctAnswer - The correct answer from the gameData object.
-         */
-        function checkAnswer(selectedOption, correctAnswer) {
-            const feedbackBox = document.getElementById('feedback-box');
-            const feedbackText = document.getElementById('feedback-text');
-            
-            // Make the feedback box visible and reset its color.
-            feedbackBox.classList.remove('hidden', 'bg-green-500', 'bg-red-500');
-            
-            if (selectedOption === correctAnswer) {
-                feedbackText.textContent = 'Correct! +1 Point';
-                feedbackBox.classList.add('bg-green-500'); // Green for correct.
-                document.getElementById('game-message').textContent = "Excellent! You solved the puzzle on the desk.";
-            } else {
-                feedbackText.textContent = 'Wrong Answer. Try again or use a hint.';
-                feedbackBox.classList.add('bg-red-500'); // Red for incorrect.
-            }
-            
-            // Update the UI to show the result and allow the user to close the modal.
-            document.getElementById('hint-button').classList.add('hidden');
-            document.getElementById('close-modal-button').classList.remove('hidden');
-        }
-
-
-        // --- V. APPLICATION ENTRY POINT ---
-        // The 'DOMContentLoaded' event ensures that our JavaScript code only runs
-        // after the entire HTML page has been loaded and is ready to be manipulated.
-        document.addEventListener('DOMContentLoaded', initializeApp);
-    </script>
+   
 </body>
 </html>
